@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2015 The Linux Foundation. All rights reserved.
+ * Copyright (c) 2012-2016 The Linux Foundation. All rights reserved.
  *
  * Previously licensed under the ISC license by Qualcomm Atheros, Inc.
  *
@@ -288,6 +288,13 @@ enum wifi_logging_ring_id {
 	RIND_ID_DRIVER_DEBUG,
 	RING_ID_FIRMWARE_DEBUG,
 };
+
+/* vendor element ID */
+#define IE_EID_VENDOR        (221) /* 0xDD */
+#define IE_LEN_SIZE          (1)
+#define IE_EID_SIZE          (1)
+/* Minimum size of vendor IE = 3 bytes of oui_data + 1 byte of data */
+#define IE_VENDOR_OUI_SIZE   (4)
 
 // -------------------------------------------------------------------
 // Change channel generic scheme
@@ -1254,6 +1261,8 @@ typedef struct sAniSirGlobal
     t_auth_ack_status auth_ack_status;
     bool first_scan_done;
     int8_t first_scan_bucket_threshold;
+    sir_mgmt_frame_ind_callback mgmt_frame_ind_cb;
+    sir_p2p_ack_ind_callback p2p_ack_ind_cb;
 } tAniSirGlobal;
 
 typedef enum
